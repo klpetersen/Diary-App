@@ -7,9 +7,9 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-user1 = User.create(name: 'Yoan', username: 'cuban-cabana-boy')
-user2 = User.create(name: 'Tony', username: 'xXRedDarknessXx')
-user3 = User.create(name: 'Seb', username: 'MurderPunch')
+user1 = User.create(username: 'cuban-cabana-boy')
+user2 = User.create(username: 'xXRedDarknessXx')
+user3 = User.create(username: 'MurderPunch')
 
 
 
