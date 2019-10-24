@@ -17,7 +17,6 @@ document.addEventListener('DOMContentLoaded', function(event){
             renderShowPage(user)
         }
         else { 
-            // let newUser = dataObj.data.
             createUser(loginInput.value)
         }
     }
@@ -29,6 +28,17 @@ document.addEventListener('DOMContentLoaded', function(event){
         homePage.innerHTML = 
         `<div id='show-page'> 
             <h4>Hello, ${atr.username}!</h4>
+            <div id='new-post'>
+                <form id='new-post-form'>
+                    <h3>Add Title</h3>
+                    <input type="text" id="post-title" placeholder="Enter Title"> 
+                    <h3>Content</h3>
+                    <textarea name="" id="post-entry"></textarea><br>
+                    <button type="submit" id="post-submit-btn">Submit</button>
+                </form>
+            </div>
+            <div id='show-posts-container'>
+            </div>
         </div>`
     }
 
