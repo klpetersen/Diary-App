@@ -1,0 +1,100 @@
+body { 
+    width: 100%; 
+    height: 100vh; 
+    background-image: url('https://images.wallpaperscraft.com/image/road_marking_fog_mountains_movement_120136_1920x1080.jpg')
+}
+
+h1 { 
+    text-align: center; 
+    background: #f7f7f7;
+    padding: 45px; 
+    font-family: 'Nanum Myeongjo', serif;
+    font-size: 50px; 
+    width: 100%; 
+    color: darkslategray; 
+    opacity: .8;
+}
+
+#login-form { 
+    background: #3d7c47;
+    width: 40%; 
+    text-align: center;
+    padding-top: 100px; 
+    padding-bottom: 100px;
+    margin-left: 33%; 
+    margin-top: 10%; 
+    border-radius: 15px; 
+}
+
+#user-name { 
+    width: 200px;
+    height: 60px; 
+    font-size: 30px; 
+    font-family: 'Shadows Into Light Two', cursive;
+}
+
+#submit-btn { 
+    width: 100px; 
+    height: 30px; 
+    margin-top: 40px; 
+    border-radius: 10px; 
+    font-size: 20px; 
+    font-family: 'Nanum Myeongjo', serif;
+}
+
+#box-container { 
+    width: 100%; 
+}
+
+#new-post-form{ 
+    background: #76c1d4;
+    text-align: center;
+    width: 30%; 
+    float: left; 
+    margin-left: 2%; 
+    padding: 30px; 
+    border-radius: 10px;
+}
+
+#show-posts-container { 
+    background: #76c1d4;
+    width: 60%; 
+    float: right; 
+    margin-right: 3%; 
+    border-radius: 10px;
+}
+
+h3 { 
+    font-size: 25px; 
+    font-family: 'Nanum Myeongjo', serif;
+}
+
+#post-title { 
+    width: 400px; 
+    height: 40px; 
+    font-family: 'Shadows Into Light Two', cursive;
+    font-size: 35px; 
+}
+
+#post-entry { 
+    font-family: 'Shadows Into Light Two', cursive;
+    font-size: 30px; 
+}
+
+h2 { 
+    text-align: center; 
+    font-family: 'Nanum Myeongjo', serif;
+}
+
+#post-submit-btn { 
+    width: 100px; 
+    height: 30px; 
+    margin-top: 40px; 
+    border-radius: 10px; 
+    font-size: 20px; 
+    font-family: 'Nanum Myeongjo', serif;
+}
+
+#show-posts-container { 
+    
+}

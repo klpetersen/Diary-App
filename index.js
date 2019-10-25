@@ -23,22 +23,25 @@ document.addEventListener('DOMContentLoaded', function(event){
 
     function renderShowPage(user){ 
         console.log('User Found!')
-        let atr = user.attributes 
         homePage.innerHTML = ''
         homePage.innerHTML = 
         `<div id='show-page'> 
-            <h4>Hello, ${atr.username}!</h4>
-            <div id='new-post'>
-                <form id='new-post-form'>
-                    <h3>Add Title</h3>
-                    <input type="text" id="post-title" placeholder="Enter Title"> 
-                    <h3>Content</h3>
-                    <textarea name="" id="post-entry"></textarea><br>
-                    <button type="submit" id="post-submit-btn">Submit</button>
-                </form>
-            </div>
-            <div id='show-posts-container'>
-            </div>
+            <section id='box-container> 
+                <div id='new-post'>
+                    <form id='new-post-form'>
+                        <h3>Title</h3>
+                        <input type="text" id="post-title" placeholder="Enter Title"> 
+                        <h3>Content</h3>
+                        <textarea id="post-entry" rows="10" cols="40" placeholder="How are you feeling today?"></textarea><br>
+                        <button type="submit" id="post-submit-btn">Submit</button>
+                    </form>
+                </div>
+                <div id='show-posts-container'>
+                    <h2>All Posts</h2> 
+                    <div id='each-post'> 
+                    </div> 
+                </div>
+            </section>     
         </div>`
     }
 
