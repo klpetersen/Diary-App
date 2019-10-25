@@ -46,7 +46,7 @@ h1 {
     width: 100%; 
 }
 
-#new-post-form{ 
+#post-form{ 
     background: #76c1d4;
     text-align: center;
     width: 30%; 
@@ -96,5 +96,5 @@ h2 {
 }
 
 #show-posts-container { 
-    
+    height: 785px; 
 }
