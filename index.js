@@ -6,16 +6,16 @@ document.addEventListener('DOMContentLoaded', function(event){
     const postForm = document.getElementById('post-form'); 
     const loginSubmit = document.getElementById('submit-btn');
 
-    loginForm.addEventListener('click', function(event){ 
+    loginSubmit.addEventListener('click', function(event){ 
         event.preventDefault(); 
-        if(event.target === loginSubmit) { 
         fetch('http://localhost:3000/users')
             .then(resp => resp.json())
             .then(json => findUser(json))
-        }
     })
+    
 
     function findUser(dataObj){ 
+        console.log(dataObj)
         let user = dataObj.data.find(user => user.attributes.username === loginInput.value)
         if(user) { 
             renderShowPage(user)
@@ -37,7 +37,7 @@ document.addEventListener('DOMContentLoaded', function(event){
                         <input type="text" id="post-title" placeholder="Enter Title"> 
                         <h3>Content</h3>
                         <textarea id="post-entry" rows="10" cols="40" placeholder="How are you feeling today?"></textarea><br>
-                        <button id="post-submit-btn">Submit</button>
+                        <button data-id="${user.id}" id="post-submit-btn">Submit</button>
                     </div>
                 </div>
                 <div id='show-posts-container'>
@@ -45,6 +45,49 @@ document.addEventListener('DOMContentLoaded', function(event){
                 </div>
             </section>     
         </div>`
+
+        renderExistingPosts(user.id);
+
+        const formButton = document.getElementById('post-submit-btn');
+        
+        formButton.addEventListener('click', (event) => {
+            event.preventDefault();
+            let titleValue = document.getElementById('post-title').value;
+            let contentValue = document.getElementById('post-entry').value;
+            let dataUserId = document.getElementById('post-submit-btn').dataset.id
+            createPost(titleValue, contentValue, dataUserId)
+        })
+    }
+
+    function renderExistingPosts(id) {
+        // fetch(`http://localhost:3000/posts/`, { 
+        //         method: 'POST', 
+        //         headers: { 
+        //             "Content-Type": "application/json", 
+        //             Accept: "application/json"
+        //         }, 
+        //         body: JSON.stringify({ 
+        //             title: titleValue, 
+        //             content: contentValue
+        //         })
+        //     }).then(resp => resp.json()).then(json => console.log(json))
+    }
+
+
+    function createPost(title, content, id) {
+        fetch(`http://localhost:3000/posts`, { 
+            method: 'POST', 
+            headers: { 
+                "Content-Type": "application/json", 
+                Accept: "application/json"
+            }, 
+            body: JSON.stringify({ 
+                title: title,
+                content: content,
+                user_id: id 
+            })
+        })
+        alert("You created a new post!");
     }
 
     function createUser(value){ 
@@ -61,35 +104,6 @@ document.addEventListener('DOMContentLoaded', function(event){
             })
         })
         alert("You created a new account!")
-    }
-
-
-    document.addEventListener('click', function(event) { 
-        if(event.target === post-submit-btn){ 
-            event.preventDefault(); 
-            let titleValue = document.getElementById('post-title')
-            let contentValue = document.getElementById('post-entry')
-            fetch(`http://localhost:3000/posts`, { 
-                method: 'POST', 
-                headers: { 
-                    "Content-Type": "application/json", 
-                    Accept: "application/json"
-                }, 
-                body: JSON.stringify({ 
-                    title: titleValue, 
-                    content: contentValue
-                })
-            }).then(resp => resp.json()).then(json => console.log(json))
-            // error says: "uncaught reference error" 
-            //was able to fix button event listener by removing/changing the <form> 
-            // for the submit. Unsure how to get this to post correctly. 
-            //hopefully you like the layout! feel free to make any changes (: 
-        }
-    })
-
-
-
-
-
-
+    }     
 })
+
