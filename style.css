@@ -31,6 +31,7 @@ h1 {
     height: 60px; 
     font-size: 30px; 
     font-family: 'Shadows Into Light Two', cursive;
+    border-radius: 10px;
 }
 
 #submit-btn { 
@@ -74,11 +75,13 @@ h3 {
     height: 40px; 
     font-family: 'Shadows Into Light Two', cursive;
     font-size: 35px; 
+    border-radius: 5px; 
 }
 
 #post-entry { 
     font-family: 'Shadows Into Light Two', cursive;
     font-size: 30px; 
+    border-radius: 5px;
 }
 
 h2 { 
@@ -96,5 +99,23 @@ h2 {
 }
 
 #show-posts-container { 
-    height: 785px; 
+    height: 740px; 
+    overflow: scroll;
+}
+
+.each-post { 
+    margin-left: 100px;
+    margin-right: 100px; 
+    margin-bottom: 20px; 
+    border-radius: 15px; 
+    padding: 20px;  
+    background: whitesmoke;
+    font-family: 'Nanum Myeongjo', serif;
+}
+
+#post-header { 
+    left: 20px;
+    font-size: 25px;
+    margin-top: 15px; 
+    font-weight: bolder; 
 }
