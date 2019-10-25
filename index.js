@@ -15,7 +15,6 @@ document.addEventListener('DOMContentLoaded', function(event){
     
 
     function findUser(dataObj){ 
-        console.log(dataObj)
         let user = dataObj.data.find(user => user.attributes.username === loginInput.value)
         if(user) { 
             renderShowPage(user)
@@ -30,23 +29,26 @@ document.addEventListener('DOMContentLoaded', function(event){
         homePage.innerHTML = ''
         homePage.innerHTML = 
         `<div id='show-page'> 
+            <h1>${user.attributes.username}'s Feelings</h1>
             <section id='box-container> 
                 <div id='new-post'>
                     <div id='post-form'>
                         <h3>Title</h3>
                         <input type="text" id="post-title" placeholder="Enter Title"> 
                         <h3>Content</h3>
-                        <textarea id="post-entry" rows="10" cols="40" placeholder="How are you feeling today?"></textarea><br>
+                        <textarea id="post-entry" rows="9" cols="40" placeholder="How are you feeling today?"></textarea><br>
                         <button data-id="${user.id}" id="post-submit-btn">Submit</button>
                     </div>
                 </div>
                 <div id='show-posts-container'>
-                    <h2>All Posts</h2> 
+                    <div>
+                        <h2 >All Muh Feelins'</h2>
+                    </div>
                 </div>
             </section>     
         </div>`
 
-        renderExistingPosts(user.id);
+        fetchAllPosts(user.id);
 
         const formButton = document.getElementById('post-submit-btn');
         
@@ -55,26 +57,42 @@ document.addEventListener('DOMContentLoaded', function(event){
             let titleValue = document.getElementById('post-title').value;
             let contentValue = document.getElementById('post-entry').value;
             let dataUserId = document.getElementById('post-submit-btn').dataset.id
-            createPost(titleValue, contentValue, dataUserId)
+            createPost(titleValue, contentValue, dataUserId) 
         })
     }
 
-    function renderExistingPosts(id) {
-        // fetch(`http://localhost:3000/posts/`, { 
-        //         method: 'POST', 
-        //         headers: { 
-        //             "Content-Type": "application/json", 
-        //             Accept: "application/json"
-        //         }, 
-        //         body: JSON.stringify({ 
-        //             title: titleValue, 
-        //             content: contentValue
-        //         })
-        //     }).then(resp => resp.json()).then(json => console.log(json))
+    function fetchAllPosts(id) {
+        fetch(`http://localhost:3000/posts/`)
+        .then(resp => resp.json())
+        .then(json => iterateData(json, id))
+    }
+
+    function iterateData(posts, id) { 
+        for(let i = 0; i < posts.data.length; i++){
+            let atr = posts.data[i].attributes
+            let post_user_id = posts.data[i].attributes.user_id
+            if(post_user_id == id){
+                showCard(atr)
+            }
+        }
+    }
+
+    function showCard(post){ 
+       const showPostsContainer = document.getElementById('show-posts-container')
+       showPostsContainer.innerHTML += 
+       `<div class='each-post'> 
+            <p id='post-header'>${post.title}</p> 
+            <p >${post.content}</p> 
+       <div> `
     }
 
 
     function createPost(title, content, id) {
+        document.getElementById('post-title').value = '';
+        document.getElementById('post-entry').value = '';
+        let newPost = {title, content, id};
+        showCard(newPost);
+        
         fetch(`http://localhost:3000/posts`, { 
             method: 'POST', 
             headers: { 
@@ -87,12 +105,10 @@ document.addEventListener('DOMContentLoaded', function(event){
                 user_id: id 
             })
         })
-        alert("You created a new post!");
     }
 
     function createUser(value){ 
         console.log('No user found')
-        console.log(value)
         fetch(`http://localhost:3000/users`, { 
             method: 'POST', 
             headers: { 
@@ -103,7 +119,6 @@ document.addEventListener('DOMContentLoaded', function(event){
                 username: value
             })
         })
-        alert("You created a new account!")
     }     
 })
 

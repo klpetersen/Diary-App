@@ -7,10 +7,4 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-user1 = User.create(username: 'cuban-cabana-boy')
-user2 = User.create(username: 'xXRedDarknessXx')
-user3 = User.create(username: 'MurderPunch')
 
-
-
-post1 = Post.create(title: 'First post', content: 'This is content of first post', user_id: 1)
